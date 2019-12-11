@@ -292,10 +292,10 @@ define(
 
                             fullScreenLoader.startLoader();
                             try { 
-								RedirectAfterPlaceOrder(orderId);
 								window.location.replace("/checkout/onepage/success/");
+								RedirectAfterPlaceOrder(orderId);
+								 console.log("ok");
 								fullScreenLoader.stopLoader();
-                                redirectOnSuccessAction.execute();
 							} catch(error) {
 								fullScreenLoader.stopLoader();
 							}
