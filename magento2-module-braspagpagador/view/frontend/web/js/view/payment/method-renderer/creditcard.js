@@ -252,7 +252,7 @@ define(
                             try { 
 								RedirectAfterPlaceOrder(orderId);
 								fullScreenLoader.stopLoader();
-                                        redirectOnSuccessAction.execute();
+                                        //redirectOnSuccessAction.execute();
 								window.location.replace("/checkout/onepage/success/");
 							} catch(error) {
 								fullScreenLoader.stopLoader();
@@ -293,9 +293,9 @@ define(
                             fullScreenLoader.startLoader();
                             try { 
 								RedirectAfterPlaceOrder(orderId);
+								window.location.replace("/checkout/onepage/success/");
 								fullScreenLoader.stopLoader();
                                 redirectOnSuccessAction.execute();
-								window.location.replace("/checkout/onepage/success/");
 							} catch(error) {
 								fullScreenLoader.stopLoader();
 							}
