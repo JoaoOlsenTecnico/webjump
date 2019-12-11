@@ -249,26 +249,17 @@ define(
                             self.afterPlaceOrder();
 
                             fullScreenLoader.startLoader();
-                            $.when(
-                                RedirectAfterPlaceOrder(orderId)
-                            ).done(
-                                function (url) {
-                                    if (url.length) {
-                                        window.location.replace(url);
-                                        return true;
-                                    }
-
-                                    if (self.redirectAfterPlaceOrder) {
+                            try { 
+								RedirectAfterPlaceOrder(orderId);
+								fullScreenLoader.stopLoader();
+								if (self.redirectAfterPlaceOrder) {
                                         redirectOnSuccessAction.execute();
-                                    }
                                 }
-                            ).fail(
-                                function (response) {
-                                    errorProcessor.process(response, messageContainer);
-                                }
-                            ).always(function () {
-                                fullScreenLoader.stopLoader();
-                            });
+								window.location.replace("/checkout/onepage/success/");
+							} catch(error) {
+								fullScreenLoader.stopLoader();
+							}
+                                RedirectAfterPlaceOrder(orderId)  
                         }
                     );
                 });
@@ -301,6 +292,7 @@ define(
                             self.afterPlaceOrder();
 
                             fullScreenLoader.startLoader();
+							console.log(error);
                             $.when(
                                 RedirectAfterPlaceOrder(orderId)
                             ).done(
